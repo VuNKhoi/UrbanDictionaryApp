@@ -12,7 +12,7 @@ Kotlin , Retrofit, Koin, Junit, Mockito, Room Db, MVVM
 - Room database for storing data incase unable to fetch (some exception)
 - Configuration change handled by onSaveInstanceState callback
 - Dependency injection using koin for repo, services and database
-
+-------------------------------------------------------------------------------
 
 - Few things that can be imporved
 - Callbacks using onClick in XML instead of using setOnClickListener, since this is MVVM
