@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">UrbanDictionaryApp</string>
+    <string name="word_to_search">Word to search</string>
+    <string name="search">Search</string>
+    <string name="sort_by_most_thumbs_down">Sort by most thumbs down</string>
+    <string name="sort_by_most_thumbs_up">Sort by most thumbs up</string>
+    <string name="clear">Clear</string>
 </resources>

@@ -27,7 +27,8 @@
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toStartOf="@+id/btnSearch"
             app:layout_constraintStart_toEndOf="@+id/tvWordToSearch"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:autofillHints="enter a string" />
 
         <TextView
             android:id="@+id/tvWordToSearch"
