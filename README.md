@@ -2,6 +2,7 @@ Urban Dictinary App
 
 Kotlin , Retrofit, Koin, Junit, Mockito, Room Db, MVVM
 
+Main points
 - Edit text for input and a search button
 - 2 radio buttons for sorting either by thumbs up or down
 - A clear button for clearing the edit text and the radio buttons
@@ -14,7 +15,7 @@ Kotlin , Retrofit, Koin, Junit, Mockito, Room Db, MVVM
 - Dependency injection using koin for repo, services and database
 -------------------------------------------------------------------------------
 
-- Few things that can be imporved
+Few things that can be imporved
 - Callbacks using onClick in XML instead of using setOnClickListener, since this is MVVM
 - Many UI things, such as each recycler view item, can be cards with elevation....
 - A bunch of test cases, such as the one testing to see if the progress bar is showing, unable to test that one since internet is always too fast even when changing the emulator speed to gprs
