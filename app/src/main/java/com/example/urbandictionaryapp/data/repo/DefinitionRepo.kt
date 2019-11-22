@@ -20,8 +20,11 @@ class DefinitionRepo(
 
     suspend fun getDefinitions(string: String): List<Definition>? {
         return try {
-            val definitions = fetchDefinitions(string)
-            putDefinitionsInDb(definitions)
+            var definitions = getDefinitionFromDb(string)
+            if (definitions == null) {
+                definitions = fetchDefinitions(string)
+                putDefinitionsInDb(definitions)
+            }
             definitions
         } catch (e: Exception) {
             Log.e("FETCH DEF ERROR", e.message ?: "")
@@ -35,6 +38,7 @@ class DefinitionRepo(
         .list
 
     private fun putDefinitionsInDb(list: List<Definition>) {
+        if (list.isEmpty()) return
         val word = list[0].word.toLowerCase(Locale.getDefault())
         val json = listToJson(list)
         _appDb

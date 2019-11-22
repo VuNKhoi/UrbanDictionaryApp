@@ -1,7 +1,6 @@
 package com.example.urbandictionaryapp.ui
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -11,7 +10,7 @@ import com.example.urbandictionaryapp.data.model.Definition
 import kotlinx.android.synthetic.main.definition_item.view.*
 import kotlin.random.Random
 
-class CustomRecyclerViewAdapter(private var list: List<Definition>): RecyclerView.Adapter<CustomViewHolder>() {
+class CustomRecyclerViewAdapter(var list: List<Definition>): RecyclerView.Adapter<CustomViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemLayout = layoutInflater.inflate(
@@ -30,15 +29,6 @@ class CustomRecyclerViewAdapter(private var list: List<Definition>): RecyclerVie
         holder.view.tvNumThumbDown.text = "thumbs down " + current.thumbsDown.toString()
         (holder.view as LinearLayout).setBackgroundColor(randomColor())
     }
-
-    fun updateAdapter(newList: List<Definition>) {
-        this.list = newList
-        this.notifyDataSetChanged()
-        Log.d("update test", list.toString())
-    }
-
-    fun getRecyclerViewList() = this.list
-
 
     private fun randomColor() = Color.rgb(
         Random.nextInt(200) + 50,

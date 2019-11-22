@@ -1,37 +1,25 @@
 package com.example.urbandictionaryapp.viewModel
 
-import android.util.Log
-import android.view.View
 import androidx.lifecycle.*
 import com.example.urbandictionaryapp.data.model.Definition
 import com.example.urbandictionaryapp.data.repo.DefinitionRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+
 class CustomViewModel(private val definitionRepo: DefinitionRepo) : ViewModel() {
-    var callbacks: Callbacks? = null
     val isLoading = MutableLiveData<Boolean>(false)
+    val definitions = MutableLiveData<List<Definition>>()
 
-    // its best that viewmodel don't know anything about the views, thus the Callbacks
-    interface Callbacks {
-        fun onBtnSearchClicked()
-        fun clearInputs()
-    }
-
-
-    fun definitions(string: String): LiveData<List<Definition>?>{
-        changeIsLoadingState()
-        Log.d("FETCH ", "START " + isLoading.value.toString())
-
-        val definitionLiveData = liveData(Dispatchers.IO) {
-            val definitions = definitionRepo.getDefinitions(string)
-            emit(definitions)
+    fun getDefinitions(string: String?) =
+        viewModelScope.launch(Dispatchers.IO) {
+            changeIsLoadingState()
+            definitions.postValue(
+                if (string != null) definitionRepo.getDefinitions(string)
+                else emptyList()
+            )
+            changeIsLoadingState()
         }
-        changeIsLoadingState()
-        Log.d("FETCH ", "END " + isLoading.value.toString())
-
-        return definitionLiveData
-    }
 
     // change isLoading state, a live data connected to the progress bar in the xml,
     private fun changeIsLoadingState() {
@@ -60,5 +48,4 @@ class CustomViewModel(private val definitionRepo: DefinitionRepo) : ViewModel() 
         // sorted map return natural order (increasing), so reverse
         return map.toSortedMap().values.reversed()
     }
-
 }
