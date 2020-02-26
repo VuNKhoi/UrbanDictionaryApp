@@ -1,6 +1,8 @@
 Urban Dictinary App /
 Khoi Vu
+
 KForce, Nike Contract Code Challenge
+
 Kotlin , Retrofit, Koin, Junit, Mockito, Room Db, MVVM
 
 Main points
